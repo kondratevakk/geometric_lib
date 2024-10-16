@@ -178,7 +178,7 @@ circle.py
 
 Описание: Добавлен новый модуль rectangle.py, содержащий функции `area(a, b)` и `perimeter(a,b)` для вычисления площади и периметра прямоугольника.
 
-**Коммит:** `e8ef051b00853de78b06d9ede099b5560891adb1`
+**Коммит:** [`4be26fff814f09748e99e0b3bd4e8d8d22c6bf8b`](https://github.com/kondratevakk/geometric_lib/commit/4be26fff814f09748e99e0b3bd4e8d8d22c6bf8b)
 
 **Описание:** Добавлен новый модуль `triangle.py`, включающий функции `area(a, h)` для вычисления площади треугольника и `perimeter(a, b, c)` для расчета его периметра.
 
