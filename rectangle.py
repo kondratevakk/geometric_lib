@@ -15,8 +15,9 @@ def area(a, b):
     """
     return a * b
 
+
 def perimeter(a, b):
-"""
+    """
     Вычисляет периметр прямоугольника по его ширине и высоте.
 
     Параметры:
@@ -30,4 +31,4 @@ def perimeter(a, b):
     >>> perimeter(4, 5)
     18
     """
-    return (a + b)*2
+    return (a + b) * 2
