@@ -1,32 +1,30 @@
 def area(a):
     """
-    Вычисляет площадь квадрата по заданной длине его стороны.
-
-    Параметры:
-    a (float): Длина стороны квадрата.
-
-    Возвращает:
-    float: Площадь квадрата.
-
-    Пример вызова:
-    >>> area(4)
-    16
+    This function eval area of square
+        Parameters:
+            a: side length of square
+        Return:
+            area: area of square
+        Example:
+            area(3): 9
     """
-    return a * a
+    if str(a).isdigit() and int(a) > 0:
+        return int(a) * int(a)
+    else:
+        return 0
 
 
 def perimeter(a):
     """
-    Вычисляет периметр квадрата по заданной длине его стороны.
-
-    Параметры:
-    a (float): Длина стороны квадрата.
-
-    Возвращает:
-    float: Периметр квадрата.
-
-    Пример вызова:
-    >>> perimeter(4)
-    16
+    This function eval perimeter of square
+        Parameters:
+            a: side length of square
+        Return:
+            perimeter: perimeter of square
+        Example:
+            perimeter(3): 12
     """
-    return 4 * a
+    if str(a).isdigit() and int(a) > 0:
+        return 4 * int(a)
+    else:
+        return 0
