@@ -32,10 +32,10 @@ jobs:
           python-version: 3.9
       - name: run_unittests
         run: |
-          python -m unittest "unit_tests.py"
-          python -m unittest "unit_tests2.py"
-          python -m unittest "unit_tests3.py"
-          python -m unittest "unit_tests4.py"
+          python -m unittest "circle_test.py"
+          python -m unittest "rectangle_test.py"
+          python -m unittest "square_test.py"
+          python -m unittest "triangle_test.py"
 
   windows-build:
     # The type of runner that the job will run on
@@ -53,7 +53,7 @@ jobs:
           python-version: 3.9
       - name: Run our tests
         run: |
-          python.exe -m unittest "unit_tests.py"
-          python.exe -m unittest "unit_tests2.py"
-          python.exe -m unittest "unit_tests3.py"
-          python.exe -m unittest "unit_tests4.py"
+          python.exe -m unittest "circle_test.py"
+          python.exe -m unittest "rectangle_test.py"
+          python.exe -m unittest "square_test.py"
+          python.exe -m unittest "triangle_test.py"
