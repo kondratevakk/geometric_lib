@@ -1,37 +1,46 @@
-name: Run unit tests
+name: CI - Run Unit Test
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "No5" ]
+  pull_request:
+    branches: [ "No5" ]
+  workflow_dispatch:
 
 jobs:
-  test:
+  build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-    
-    steps:
-      # Шаг 1: Клонирование репозитория
-      - name: Checkout code
-        uses: actions/checkout@v3
 
-      # Шаг 2: Настройка Python
-      - name: Set up Python
+    steps:
+      - name: Check out Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: 3.9
+          python-version: ${{ matrix.python-version }}
 
-      # Шаг 3: Установка зависимостей с увеличением тайм-аута
-      - name: Install dependencies
-        run: |
-          pip install --default-timeout=100 -r requirements.txt --verbose
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
 
-      # Шаг 4: Запуск юнит-тестов
-      - name: Run tests
+      - name: Set up Python
+        uses: actions/setup-python@v4.7.1
+        with:
+          python-version: 3.8
+
+      - name: Run My Step
+        id: myStep
+        run: echo "::set-output name=myOutput::some value"
+
+      - name: Set Output Variable
+        run: echo "myOutput=${{ steps.myStep.outputs.myOutput }}" >> $GITHUB_ENV
+
+      - name: Install Dependencies
         run: |
-          python -m unittest circle_test.py
-          python -m unittest rectangle_test.py
-          python -m unittest square_test.py
-          python -m unittest triangle_test.py
+          echo "There are no dependencies!"
+      - name: Run Unit Tests
+        run: |
+          python -m unittest discover -s ./tests -p "*_test.py"
