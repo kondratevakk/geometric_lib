@@ -1,48 +1,59 @@
-name: CI Workflow
+# This is a basic workflow to help you get started with Actions
 
+name: CI
+
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches:
-      - main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
+  # This workflow contains a single job called "build"
+  linux-build:
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.9, 3.10, 3.11]
-        
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+    
+       # Runs a set of commands using the runners shell
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: python_install
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+      - name: run_unittests
+        run: |
+          python -m unittest "unit_tests.py"
+          python -m unittest "unit_tests2.py"
+          python -m unittest "unit_tests3.py"
+          python -m unittest "unit_tests4.py"
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
+  windows-build:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install --no-cache-dir -r requirements.txt
-
-    - name: Run tests
-      run: |
-        python -m unittest discover -s tests -p "*.py"
-
-    - name: Upload test results to GitHub (optional)
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-results
-        path: test-results/
-
-    - name: Cache dependencies (optional)
-      uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    
+       # Runs a set of commands using the runners shell
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: python_install
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+      - name: Run our tests
+        run: |
+          python.exe -m unittest "unit_tests.py"
+          python.exe -m unittest "unit_tests2.py"
+          python.exe -m unittest "unit_tests3.py"
+          python.exe -m unittest "unit_tests4.py"
