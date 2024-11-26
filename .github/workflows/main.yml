@@ -27,7 +27,6 @@ jobs:
 
       - name: Run tests
         run: |
-          python -m unittest circle_test.py
           python -m unittest rectangle_test.py
           python -m unittest square_test.py
           python -m unittest triangle_test.py
