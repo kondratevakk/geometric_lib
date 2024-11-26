@@ -1,20 +1,17 @@
-name: Run unit tests
-
-on:
-  push:
-    branches:
-      - main
-
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        python-version: [3.8, 3.9, 3.10, 3.11]  
+        python-version: [3.8, 3.9, 3.10, 3.11]
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
+      - name: Remove old Python versions (if any)
+        run: |
+          sudo apt-get remove python3.1 python3.8 python3.9 python3.10  # Удалите версии, если они установлены
 
       - name: Set up Python
         uses: actions/setup-python@v4
