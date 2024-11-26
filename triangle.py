@@ -1,35 +1,33 @@
 def area(a, h):
     """
-    Вычисляет площадь треугольника по основанию и высоте.
-
-    Параметры:
-    a (float): Длина основания треугольника.
-    h (float): Высота треугольника.
-
-    Возвращает:
-    float: Площадь треугольника.
-
-    Пример вызова:
-    >>> area(5, 10)
-    25.0
+    This function eval area of triangle
+        Parameters:
+            a: side length of triangle
+            h: height to side length of triangle
+        Return:
+            area: area of triangle
+        Example:
+            area(2, 4): 4
     """
-    return a * h / 2
+    if str(a).isdigit() and str(h).isdigit() and int(a) > 0 and int(h) > 0:
+        return int(a) * int(h) / 2
+    else:
+        return 0
 
 
 def perimeter(a, b, c):
     """
-    Вычисляет периметр треугольника по длине его сторон.
-
-    Параметры:
-    a (float): Длина первой стороны треугольника.
-    b (float): Длина второй стороны треугольника.
-    c (float): Длина третьей стороны треугольника.
-
-    Возвращает:
-    float: Периметр треугольника.
-
-    Пример вызова:
-    >>> perimeter(3, 4, 5)
-    12
+    This function eval perimeter of triangle
+        Parameters:
+            a: side length of triangle
+            b: side length of triangle
+            c: side length of triangle
+        Return:
+            perimeter: perimeter of triangle
+        Example:
+            perimeter(1, 2, 3): 6
     """
-    return a + b + c
+    if str(a).isdigit() and str(b).isdigit() and str(c).isdigit() and int(a) > 0 and int(b) > 0 and int(c) > 0:
+        return int(a) + int(b) + int(c)
+    else:
+        return 0
