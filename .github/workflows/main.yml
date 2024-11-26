@@ -1,46 +1,33 @@
-name: CI - Run Unit Test
+name: Run unit tests
 
 on:
   push:
-    branches: [ "No5" ]
-  pull_request:
-    branches: [ "No5" ]
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
-  build:
+  test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
 
     steps:
-      - name: Check out Repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Display Python version
-        run: python -c "import sys; print(sys.version)"
+      - name: Checkout code
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v4.7.1
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: 3.9
 
-      - name: Run My Step
-        id: myStep
-        run: echo "::set-output name=myOutput::some value"
-
-      - name: Set Output Variable
-        run: echo "myOutput=${{ steps.myStep.outputs.myOutput }}" >> $GITHUB_ENV
-
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
-          echo "There are no dependencies!"
-      - name: Run Unit Tests
+          pip install --default-timeout=100 -r requirements.txt --verbose
+
+      - name: Run tests
         run: |
-          python -m unittest discover -s ./tests -p "*_test.py"
+          python -m unittest circle_test.py
+          python -m unittest rectangle_test.py
+          python -m unittest square_test.py
+          python -m unittest triangle_test.py
